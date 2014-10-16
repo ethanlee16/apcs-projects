@@ -1,0 +1,7 @@
+bin/
+.settings/
+src/coffeetools
+.checkstyle
+.classpath
+.project
+
