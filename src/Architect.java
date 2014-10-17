@@ -27,8 +27,8 @@
  */
 import java.util.*;
 
-class Architect {
-    
+public class Architect {
+
 	public static Scanner prompt = new Scanner(System.in);
 	public static StringBuilder houseStr = new StringBuilder();
 	
