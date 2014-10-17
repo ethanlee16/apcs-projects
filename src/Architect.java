@@ -34,14 +34,14 @@ public class Architect {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("Welcome to Architect. Please enter an ODD number for the width of your new house. "
-				+ "The minimum and standard is seven.");
+		System.out.println("Welcome to Architect. Please enter a number for the width of your new house. "
+				+ "The minimum is five, but the standard is seven.");
 		
 		//Loops until width is a valid response, Maths all the things after width is actually determined
 		int width = prompt.nextInt();	
-		while ((width & 1) == 0 || width < 7){
+		while (width < 5){
 			System.out.println("Error: number must be at "
-				+ "least 7 and odd. Try again:  ");
+				+ "least 5. Try again:  ");
 			width = prompt.nextInt();
 		}
 		
@@ -49,7 +49,7 @@ public class Architect {
 		 * shifts.
 		 * This generates more realistic roofs than ceiled ones, because we want
 		 * to exclude the central star when calculating spaces.
-		 * Because (width & 1) always == 1, width can always be described as
+		 * If (width & 1) == 1, width can always be described as
 		 * width == (half << 1) + 1. The `+ 1` is for the central star.
 		 * E.g. int width = 15; current rounding:
 		 *        *
@@ -57,7 +57,7 @@ public class Architect {
 		 *   *         *
 		 * +-------------+
 		 *
-		 * Ceiled:
+		 * Ceiling rounding:
 		 * int half    = -((-width)  >> 1);
 		 * int fourth  = -((-half)   >> 1);
 		 * int eighth  = -((-fourth) >> 1);
@@ -66,6 +66,14 @@ public class Architect {
 		 *     *     *
 		 *   *         *
 		 * +-------------+
+		 *
+		 * For evens, the extra compensation for the star results in the
+		 * unavoidable shifting right of the star:
+		 * width = 16
+		 *         *
+		 *     *      *
+		 *   *          *
+		 * +--------------+
 		 */
 		int half    = width  >> 1;
 		int fourth  = half   >> 1;
@@ -124,12 +132,24 @@ public class Architect {
 		// For example: +---+-+---+ makes up the bottom of the house, and |   .-.   | makes
 		// the top of the door frame.
 		
+		// For even numbers, the only way to make it look OK is put one more
+		// space on one side. Hence equalsS(hort) string.
+		
+		String equalsS;
 		for (int count = half - 2; count > 0; count--){
 			equals += " ";
 		}
-		houseStr.append("|" + equals + ".-." + equals + "|\n");
-		houseStr.append("|" + equals + "| |" + equals + "|\n");
-		houseStr.append("+" + equals.replace(" ", "-") + "+-+" + equals.replace(" ", "-") + "+");
+		if ((width & 1) == 0)
+			equalsS = equals.substring(0, equals.length() - 1);
+		else
+			equalsS = equals;
+
+		// Flipping a coin: heads for putting extra space on the left
+		//                  tails for putting extra space on the right
+		// Head.
+		houseStr.append("|" + equals + ".-." + equalsS + "|\n");
+		houseStr.append("|" + equals + "| |" + equalsS + "|\n");
+		houseStr.append("+" + equals.replace(" ", "-") + "+-+" + equalsS.replace(" ", "-") + "+");
 		
 		System.out.println(houseStr.toString());
 		
