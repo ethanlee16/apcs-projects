@@ -5,26 +5,31 @@
  * 0.1 only built the top and second layers of roof
  * 0.2 puts the whole roof on
  * 1.0 actually builds the whole house!
+ * 1.1 adds select optimizations from pr/1
  * 
- * @author ethan.lee
+ * @author ethan.lee and Timothy Gu
  *
  */
 import java.util.*;
 
 public class Architect {
 	
-	public static Scanner prompt = new Scanner(System.in);
-	public static StringBuilder houseStr = new StringBuilder();
+	private static Scanner prompt = new Scanner(System.in);
+	private static StringBuilder houseStr = new StringBuilder();
 	
 	public static void main(String[] args) {
 		
 		System.out.println("Welcome to Architect. Please enter an ODD number for the width of your new house. "
 				+ "The minimum and standard is seven.");
 		
-		//Loops until width is a valid response, Maths all the things after width is actually determined
+		// Uses double to accept anything (although still crashes on String input clearly)
+        // We check this with the conditionals to see if odd and integer
+        
 		double width = prompt.nextDouble();	
-		while (width % 2 == 0 || width < 7){System.out.println("Error: number must be at "
-				+ "least 7 and odd. Try again:  ");width = prompt.nextDouble();}
+		while (width % 2 == 0 || width < 7) {
+            System.out.println("Error: number must be at least 7 and odd. Try again:  ");
+            width = prompt.nextDouble();
+        }
 		
 		double half = Math.floor(width/2);
 		double fourth = Math.ceil(width/4);
@@ -44,7 +49,7 @@ public class Architect {
 		houseStr.append("*");
 		
 		//Accounts for blanks in between two mid-stars
-		for (int count = (int) (width - (fourth*2) - 2); count > 0; count--) {
+		for (int count = (int) (width - (fourth * 2) - 2); count > 0; count--) {
 			houseStr.append(" ");
 		}
 		houseStr.append("*\n");
@@ -53,8 +58,8 @@ public class Architect {
 			houseStr.append(" ");
 		}
 		houseStr.append("*");
-		
-		for (int count = (int) (width - (eighth*2) - 2); count > 0; count--) {
+		 
+		for (int count = (int) (width - (eighth * 2) - 2); count > 0; count--) {
 			houseStr.append(" ");
 		}
 		houseStr.append("*\n");
