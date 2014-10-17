@@ -27,8 +27,8 @@
  */
 import java.util.*;
 
-public class Architect {
-	
+class Architect {
+    
 	public static Scanner prompt = new Scanner(System.in);
 	public static StringBuilder houseStr = new StringBuilder();
 	
@@ -42,12 +42,39 @@ public class Architect {
 		while ((width & 1) == 0 || width < 7){
 			System.out.println("Error: number must be at "
 				+ "least 7 and odd. Try again:  ");
-			width = prompt.nextDouble();
+			width = prompt.nextInt();
 		}
 		
-		int half   = (width  >> 1);
-		int fourth = (half   >> 1);
-		int eighth = (fourth >> 1);
+		/* NOTE: These values are floored because of the nature of bitwise
+		 * shifts.
+		 * This generates more realistic roofs than ceiled ones, because we want
+		 * to exclude the central star when calculating spaces.
+		 * Because (width & 1) always == 1, width can always be described as
+		 * width == (half << 1) + 1. The `+ 1` is for the central star.
+		 * E.g. int width = 15; current rounding:
+		 *        *
+		 *     *     *
+		 *   *         *
+		 * +-------------+
+		 *
+		 * Ceiled:
+		 * int half    = -((-width)  >> 1);
+		 * int fourth  = -((-half)   >> 1);
+		 * int eighth  = -((-fourth) >> 1);
+		 *
+		 *         *
+		 *     *     *
+		 *   *         *
+		 * +-------------+
+		 */
+		int half    = width  >> 1;
+		int fourth  = half   >> 1;
+		int eighth  = fourth >> 1;
+		// Reduced accuracy values for the mid-star spaces.
+		// Have to use the lower-accuracy values to compensate for the lower
+		// accuracy of the position of stars
+		int halfR   = fourth << 1;
+		int fourthR = eighth << 1;
 		String equals = "";
 		
 		//First star for top of roof is about halfway
@@ -63,7 +90,7 @@ public class Architect {
 		houseStr.append("*");
 		
 		//Accounts for blanks in between two mid-stars
-		for (int count = (width - half - 2); count > 0; count--) {
+		for (int count = width - halfR - 2; count > 0; count--) {
 			houseStr.append(" ");
 		}
 		houseStr.append("*\n");
@@ -73,7 +100,7 @@ public class Architect {
 		}
 		houseStr.append("*");
 		
-		for (int count = (int) (width - half - 2); count > 0; count--) {
+		for (int count = width - fourthR - 2; count > 0; count--) {
 			houseStr.append(" ");
 		}
 		houseStr.append("*\n");
