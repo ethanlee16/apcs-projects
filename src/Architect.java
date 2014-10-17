@@ -27,10 +27,10 @@
  */
 import java.util.*;
 
-class Architect {
-    
-	public static Scanner prompt = new Scanner(System.in);
-	public static StringBuilder houseStr = new StringBuilder();
+public class Architect {
+
+	private static Scanner prompt = new Scanner(System.in);
+	private static StringBuilder houseStr = new StringBuilder();
 	
 	public static void main(String[] args) {
 		
