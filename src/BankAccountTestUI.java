@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JRadioButton;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 
 public class BankAccountTestUI {
@@ -84,6 +86,11 @@ public class BankAccountTestUI {
 		frame.getContentPane().add(lblSignUpOr);
 		
 		JPanel panel = new JPanel();
+		panel.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+			}
+		});
 		panel.setBounds(0, 0, 382, 353);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
