@@ -39,9 +39,6 @@ public class TriangleCreator {
 		double[] pointC = {cx, cy};
 		Triangle t = new Triangle(pointA, pointB, pointC);
 		
-		System.out.println(t.getArea());
-		System.out.println(t.getDistance(pointA, pointB));
-		
 		System.out.println("--- PROPERTIES ---"
 				+ "\nSide A: \t" + t.getDistance(pointB, pointC)
 				+ "\nSide B: \t" + t.getDistance(pointA, pointC)
@@ -50,7 +47,7 @@ public class TriangleCreator {
 				+ "\nAngle B: \t" + t.getAngle(pointC, pointA, pointB)
 				+ "\nAngle C: \t" + t.getAngle(pointA, pointB, pointC)
 				+ "\nPerimeter: \t" + t.getPerimeter()
-				+ "\nArea: \t" + t.getArea());
+				+ "\nArea: \t\t" + t.getArea());
 
 
 	}

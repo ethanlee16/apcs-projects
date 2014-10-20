@@ -9,6 +9,7 @@
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
+import java.text.NumberFormat;
 
 public class CarAnalyst {
 	
@@ -24,6 +25,7 @@ public class CarAnalyst {
 	 * estimated value after five years.
 	 */
 	private Map<String, Double> properties = new HashMap<>();
+	private static NumberFormat toDollars = NumberFormat.getCurrencyInstance();
 	
 	public static void main(String[] args) {
 		
@@ -40,9 +42,14 @@ public class CarAnalyst {
 				YEARS + " years of use");
 		
 		// DIAGNOSTIC - prints contents of ca.properties
-		for(Map.Entry<String,Double> entry : ca.properties.entrySet()) {
+		/*for(Map.Entry<String,Double> entry : ca.properties.entrySet()) {
 			System.out.println(entry.getKey() + ":" + entry.getValue());
-		}
+		}*/
+		
+		double total = ca.properties.get("cost") + ca.properties.get("mileageAfterYears") /
+				ca.properties.get("mpg") * ca.properties.get("gasPrice");
+		total = total - ca.properties.get("valueAfterYears");
+		System.out.println("The total cost of owning this car for five years would be: " + toDollars.format(total));
 		
 	}
 	
@@ -55,8 +62,5 @@ public class CarAnalyst {
 		} temp = prompt.nextDouble();
 		properties.put(property, temp);
 	}
-	
-	private void storeInput(String property, double value) {
-		properties.put(property, value);
-	}
+
 }
