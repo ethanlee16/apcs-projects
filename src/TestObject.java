@@ -27,9 +27,6 @@ public static void main (String[] args) {
 	System.out.println(s);
 	*/
 	
-	int x = 45 / 6;
-	System.out.println(x);
-	int y = x % 5;
-	System.out.print(y);
+
 }
 }
