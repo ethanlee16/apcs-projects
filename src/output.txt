@@ -1,5 +1,7 @@
-Enter the total cost of your books.
-85.12
-Enter the number of books purchased.
-5
-The total cost, with shipping and tax, is: $101.50
+Enter a ten-digit number to be formatted here:
+OneEightHundredFive
+Invalid phone number, try again.
+949
+Invalid phone number, try again.
+9492225555
+(949) 222-5555
