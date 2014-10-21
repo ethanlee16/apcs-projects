@@ -1,7 +1,3 @@
-Enter a ten-digit number to be formatted here:
-OneEightHundredFive
-Invalid phone number, try again.
-949
-Invalid phone number, try again.
-9492225555
-(949) 222-5555
+Please input a resistance value (in ohms).
+2000
+The temperature at a resistance of 2000.0 ohms for this thermistor is 66.01580719602651 degrees Celsius.
