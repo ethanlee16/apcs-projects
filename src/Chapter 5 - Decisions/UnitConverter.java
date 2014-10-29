@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.HashMap;
-import java.util.ArrayList;
 
 public class UnitConverter {
 	
@@ -72,6 +71,8 @@ public class UnitConverter {
 		conversions.put("cm_to_m", 0.01);
 		conversions.put("cm_to_km", 1E-5);
 		conversions.put("m_to_km", 0.001);
+		conversions.put("mi_to_in", 63360.0);
+		conversions.put("mi_to_ft", 5280.0);
 	}
 	
 	/** 
@@ -128,7 +129,7 @@ public class UnitConverter {
 		else {
 			conversion = conversions.get(conversionName);
 		}
-		
-		System.out.println("The answer is " + amount * conversion + " " + unit2);
+		System.out.println("The answer is "
+				+ Math.ceil((amount * conversion) * 100) / 100 + " " + unit2);
 	}
 }
