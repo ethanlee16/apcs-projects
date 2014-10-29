@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author ethan.lee
  *
  */
-public class IncomeTax {
+public class TaxReturn {
 	
 	/**
 	 *  Fields of all of the following are to 
@@ -22,19 +22,29 @@ public class IncomeTax {
 	// both percentages and bracket caps. A for loop
 	// could then be used for the calculation logic.
 	
-	public static final int BRACKET_MAX_6 = 500000;
-	public static final int BRACKET_MAX_5 = 250000;
-	public static final int BRACKET_MAX_4 = 100000;
-	public static final int BRACKET_MAX_3 = 75000;
-	public static final int BRACKET_MAX_2 = 50000;
+	public static final int BRACKET_MAX_3_M = 64000;
+	public static final int BRACKET_MAX_2_M = 16000;
+	public static final int BRACKET_MAX_1_M = 0;
+	
+	public static final int BRACKET_MAX_3 = 32000;
+	public static final int BRACKET_MAX_2 = 8000;
 	public static final int BRACKET_MAX_1 = 0;
 	
-	public static final double BRACKET_PERCENT_6 = 0.06;
-	public static final double BRACKET_PERCENT_5 = 0.05;
-	public static final double BRACKET_PERCENT_4 = 0.04;
-	public static final double BRACKET_PERCENT_3 = 0.03;
-	public static final double BRACKET_PERCENT_2 = 0.02;
-	public static final double BRACKET_PERCENT_1 = 0.01;
+	public static final double BRACKET_PERCENT_3_M = 0.25;
+	public static final double BRACKET_PERCENT_2_M = 0.15;
+	public static final double BRACKET_PERCENT_1_M = 0.1;
+	
+	public static final double BRACKET_PERCENT_3 = 0.25;
+	public static final double BRACKET_PERCENT_2 = 0.15;
+	public static final double BRACKET_PERCENT_1 = 0.1;
+	
+	public static final int BRACKET_BASE_3 = 4400;
+	public static final int BRACKET_BASE_2 = 800;
+	public static final int BRACKET_BASE_1 = 0;
+	
+	public static final int BRACKET_BASE_3_M = 8800;
+	public static final int BRACKET_BASE_2_M = 1600;
+	public static final int BRACKET_BASE_1_M = 0;
 	
 	/** Scanner to read all user inputs **/
 	private static Scanner prompt;
