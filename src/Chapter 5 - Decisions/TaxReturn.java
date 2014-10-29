@@ -102,17 +102,14 @@ public class TaxReturn {
 		}
 		else {
 			if(income > BRACKET_MAX_3) {
-				System.out.println(incomeMutated);
 				tax += BRACKET_PERCENT_3 * (income - BRACKET_MAX_3 - incomeMutated) + BRACKET_BASE_3;
 				incomeMutated += income - BRACKET_MAX_3 - incomeMutated;
 			}
 			if(income > BRACKET_MAX_2) {
-				System.out.println(incomeMutated);
 				tax += BRACKET_PERCENT_2 * (income - BRACKET_MAX_2 - incomeMutated) + BRACKET_BASE_2;
 				incomeMutated += income - BRACKET_MAX_2 - incomeMutated;
 			}
 			if(income > BRACKET_MAX_1) {
-				System.out.println(incomeMutated);
 				tax += BRACKET_PERCENT_1 * (income - BRACKET_MAX_1 - incomeMutated) + BRACKET_BASE_1;
 				incomeMutated += income - BRACKET_MAX_1 - incomeMutated;
 			}
