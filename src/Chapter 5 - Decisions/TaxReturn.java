@@ -58,6 +58,7 @@ public class TaxReturn {
 		prompt = new Scanner(System.in);
 		
 		int income;
+		boolean married = false;
 		int tax = 0;
 		while(!prompt.hasNextInt()) {
 			System.out.println("Please enter an integer amount of "
@@ -65,33 +66,58 @@ public class TaxReturn {
 			prompt.next();
 		}
 		income = prompt.nextInt();
+		
+		String response = "";
+		System.out.println("Are you married? [y/n]");
+		while(!prompt.hasNext("y") && !prompt.hasNext("n")) {
+			System.out.println("Invalid response.");	
+			prompt.next();
+		}
+		response = prompt.nextLine();
+		response = prompt.nextLine(); // second required for correct line
+		
+		switch (response.trim()) {
+		case "y":
+			married = true;
+			break;
+		case "n":
+			married = false;
+			break;
+		}
+
 		int incomeMutated = 0;
-		
-		if(income > BRACKET_MAX_6) {
-			tax += BRACKET_PERCENT_6 * (income - BRACKET_MAX_6 - incomeMutated);
-			incomeMutated += income - BRACKET_MAX_6 - incomeMutated;
+		if(married) {
+			if(income > BRACKET_MAX_3_M) {
+				tax += BRACKET_PERCENT_3_M * (income - BRACKET_MAX_3_M - incomeMutated) + BRACKET_BASE_3_M;
+				incomeMutated += income - BRACKET_MAX_3_M - incomeMutated;
+			}
+			if(income > BRACKET_MAX_2_M) {
+				tax += BRACKET_PERCENT_2_M * (income - BRACKET_MAX_2_M - incomeMutated) + BRACKET_BASE_2_M;
+				incomeMutated += income - BRACKET_MAX_2_M - incomeMutated;
+			}
+			if(income > BRACKET_MAX_1_M) {
+				tax += BRACKET_PERCENT_1_M * (income - BRACKET_MAX_1_M - incomeMutated) + BRACKET_BASE_1_M;
+				incomeMutated += income - BRACKET_MAX_1_M - incomeMutated;
+			}
 		}
-		if(income > BRACKET_MAX_5) {
-			tax += BRACKET_PERCENT_5 * (income - BRACKET_MAX_5 - incomeMutated);
-			incomeMutated += income - BRACKET_MAX_5 - incomeMutated;
+		else {
+			if(income > BRACKET_MAX_3) {
+				System.out.println(incomeMutated);
+				tax += BRACKET_PERCENT_3 * (income - BRACKET_MAX_3 - incomeMutated) + BRACKET_BASE_3;
+				incomeMutated += income - BRACKET_MAX_3 - incomeMutated;
+			}
+			if(income > BRACKET_MAX_2) {
+				System.out.println(incomeMutated);
+				tax += BRACKET_PERCENT_2 * (income - BRACKET_MAX_2 - incomeMutated) + BRACKET_BASE_2;
+				incomeMutated += income - BRACKET_MAX_2 - incomeMutated;
+			}
+			if(income > BRACKET_MAX_1) {
+				System.out.println(incomeMutated);
+				tax += BRACKET_PERCENT_1 * (income - BRACKET_MAX_1 - incomeMutated) + BRACKET_BASE_1;
+				incomeMutated += income - BRACKET_MAX_1 - incomeMutated;
+			}
 		}
-		if(income > BRACKET_MAX_4) {
-			tax += BRACKET_PERCENT_4 * (income - BRACKET_MAX_4 - incomeMutated);
-			incomeMutated += income - BRACKET_MAX_4 - incomeMutated;
-		}
-		if(income > BRACKET_MAX_3) {
-			tax += BRACKET_PERCENT_3 * (income - BRACKET_MAX_3 - incomeMutated);
-			incomeMutated += income - BRACKET_MAX_3 - incomeMutated;
-		}
-		if(income > BRACKET_MAX_2) {
-			tax += BRACKET_PERCENT_2 * (income - BRACKET_MAX_2 - incomeMutated);
-			incomeMutated += income - BRACKET_MAX_2 - incomeMutated;
-		}
-		if(income > BRACKET_MAX_1) {
-			tax += BRACKET_PERCENT_1 * (income - BRACKET_MAX_1 - incomeMutated);
-			incomeMutated += income - BRACKET_MAX_1 - incomeMutated;
-		}
-		
+
 		System.out.println("Your total tax is $"
 				+ tax + " for your income of $"
 				+ income + ".\nLove, the IRS.");
