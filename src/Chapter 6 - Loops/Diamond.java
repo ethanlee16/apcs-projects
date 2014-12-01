@@ -16,6 +16,8 @@ public class Diamond {
 	 * @param args Array of runtime arguments  
 	**/
 	public static void main(String[] args) {
+		System.out.println("Please enter a number "
+				+ "for the desired length of a command lind diamond!");
 		String halfDiamond = "";
 		prompt = new Scanner(System.in);
 		while(!prompt.hasNextInt()) {

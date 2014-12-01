@@ -1,3 +1,0 @@
-Please input a resistance value (in ohms).
-2000
-The temperature at a resistance of 2000.0 ohms for this thermistor is 66.01580719602651 degrees Celsius.

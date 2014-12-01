@@ -16,6 +16,8 @@ public class SubstringPermutations {
 	 * @param args Array of runtime arguments  
 	**/
 	public static void main(String[] args) {
+		System.out.println("Please enter a string "
+				+ "to see all of its permutations.");
 		prompt = new Scanner(System.in);
 		String input = prompt.nextLine();
 		

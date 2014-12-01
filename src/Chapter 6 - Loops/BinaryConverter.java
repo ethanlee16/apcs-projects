@@ -17,6 +17,8 @@ public class BinaryConverter {
 	 * @param args Array of runtime arguments  
 	**/
 	public static void main(String[] args) {
+		System.out.println("Please enter an integer number "
+				+ "to get its unsigned binary equivalent.");
 		prompt = new Scanner(System.in);
 		
 		while(!prompt.hasNextInt()) {

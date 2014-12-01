@@ -15,6 +15,8 @@ public class RandomPositions {
 	 * @param args Array of runtime arguments  
 	**/
 	public static void main(String[] args) {
+		System.out.println("Please enter a string to be randomly "
+				+ "mutated.");
 		prompt = new Scanner(System.in);
 		String input = prompt.nextLine();
 		Random rand = new Random();

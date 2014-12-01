@@ -14,6 +14,8 @@ public class ReverseString {
 	 * @param args Array of runtime arguments  
 	**/
 	public static void main(String[] args) {
+		System.out.println("Please enter a string "
+				+ "to be reversed.");
 		prompt = new Scanner(System.in);
 		String input = prompt.nextLine();
 		String reversed = "";
