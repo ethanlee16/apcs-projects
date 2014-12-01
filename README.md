@@ -1,7 +1,6 @@
 # apcs-projects
 
 This repository is mainly for personal use, but you sir or madam, can use it also.
-It contains simple assignments from the book *Big Java: Early Objects* but often the actual code goes beyond the scope of the assignment. 
 
 **Note:** If you are cloning into Eclipse, set all of the folders of the Chapters as source build paths by going to apcs-projects > Properties. Remove the default `src` folder as a build path and simply add all of the subfolders within (because of [this](http://stackoverflow.com/questions/10838109/eclipse-build-path-nesting-errors) problem).
 
