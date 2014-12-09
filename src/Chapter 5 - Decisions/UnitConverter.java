@@ -13,7 +13,8 @@ public class UnitConverter {
 	/** Scanner to read all user inputs **/
 	private static Scanner prompt;
 	
-	/** Map with all supported length units. **/
+	/** LinkedHashMap with all supported length units. 
+	 *  Linked was chosen in order to preserve order of insertion. **/
 	private static final Map<String, String> units = new LinkedHashMap<>();
 	
 	static {
@@ -119,6 +120,11 @@ public class UnitConverter {
 			System.out.println("Requires a floating point value above 0, try again.");
 			amount = prompt.nextDouble();
 		}
+		
+		// Check for conversion constant under name unit_to_unit2
+		// and if it doesn't exist, reverse it, because it exists
+		// in the form unit2_to_unit. Then take the reciprocal of it
+		// to get the correct conversion constant.
 		
 		String conversionName = unit + "_to_" + unit2;
 		double conversion;

@@ -39,10 +39,8 @@ public class EscapeVelocity {
 			prompt.next();
 		}
 		velocity = prompt.nextDouble();
-		System.out.println(velocity);
 		double escVelocity = Math.sqrt((2 * GRAVITATIONAL_CONSTANT
 				* HALLEYS_COMET_MASS) / HALLEYS_COMET_RAD);
-		System.out.println(escVelocity);
 		
 		if(velocity > escVelocity * METERS_SECONDS_TO_MILES_HOURS) {
 			System.out.println("Zounds! You've jumped straight "

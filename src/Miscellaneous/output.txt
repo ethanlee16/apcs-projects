@@ -1,0 +1,82 @@
+The following are the original array's contents:
+50
+44
+11
+38
+45
+44
+10
+45
+45
+48
+The following are the ArrayList's contents:
+48
+45
+45
+10
+44
+45
+38
+11
+44
+50
+Average was: 38.0
+Minimum was 10
+Maximum was 50
+The number of numbers under 25 was 2
+
+
+The following are the original array's contents:
+44
+13
+28
+18
+43
+48
+13
+41
+40
+13
+The following are the ArrayList's contents:
+13
+40
+41
+13
+48
+43
+18
+28
+13
+44
+Average was: 30.1
+Minimum was 13
+Maximum was 48
+The number of numbers under 25 was 4
+
+
+The following are the original array's contents:
+24
+32
+19
+46
+49
+22
+17
+29
+49
+27
+The following are the ArrayList's contents:
+27
+49
+29
+17
+22
+49
+46
+19
+32
+24
+Average was: 31.4
+Minimum was 17
+Maximum was 49
+The number of numbers under 25 was 4
