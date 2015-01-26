@@ -1,7 +1,7 @@
 /**
- * 
+ * Geometry.java 
  * @author ethan
- *
+ * 
  */
 import java.util.Scanner;
 public class Geometry {
@@ -9,20 +9,19 @@ public class Geometry {
 	private static Scanner prompt;
 	
 	public static void main(String args[]) {
+		prompt = new Scanner(System.in);
 		System.out.print("Please enter a value for the radius of a "
-				+ "sphere, cylinder, or cone\n and then the height of a cube, "
+				+ "sphere, cylinder, or cone\nand then the height of a cube, "
 				+ "sphere, cylinder, or cone like so: 9.3 (radius) 10 (height)"
 				+ " or 5 6.2\n> ");
-		prompt = new Scanner(System.in);
 		
-		String input;
+		String input = prompt.nextLine();
 		
-		while(!prompt.hasNext("\\d+\\.*\\d* \\d+\\.*\\d*")) {
+		while(!input.matches("[0-9]+.*[0-9]*\\s[0-9]+.*[0-9]*")) {
 			System.out.print("That's not valid input. Try again.\n> ");
 			input = prompt.nextLine();
 		}
 		
-		input = prompt.nextLine();
 		
 		String[] stringArray = input.split(" ");
 		
