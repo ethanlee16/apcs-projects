@@ -1,0 +1,195 @@
+commit bfc778c835758c1f595e56fe67fcda5bdb1415d9
+tree 7a6552a3b75e78b9b868ccbf0270931390b1828c
+parent db36a874bec7953952d1f31b2bb0e7d99052fd4c
+author Ethan Lee <ethanlee@ethansites.com> 1422320365 -0800
+committer Ethan Lee <ethanlee@ethansites.com> 1422653199 -0800
+
+    Resolving class conflict and adding Gradebook
+
+diff --git a/src/Chapter 8 - Designing Classes/Gradebook.java b/src/Chapter 8 - Designing Classes/Gradebook.java
+index 06da5ee..973d959 100644
+--- a/src/Chapter 8 - Designing Classes/Gradebook.java	
++++ b/src/Chapter 8 - Designing Classes/Gradebook.java	
+@@ -1,4 +1,50 @@
++import java.util.Scanner;
++import java.util.ArrayList;
++import java.util.Date;
+ 
+ public class Gradebook {
+-
++	
++	private static Scanner prompt;
++	private static ArrayList<Student> students = new ArrayList<Student>();
++	
++	public static void main(String[] args) {
++		Date today = new Date();
++		System.out.print("Welcome to Gradebook. "
++				+ "\nPlease enter the name of the first student to input.\n> ");
++		prompt = new Scanner(System.in);
++		String input = prompt.nextLine();
++		
++		while(!input.toLowerCase().matches("end")) {
++			System.out.print("Please enter the name of the next student."
++					+ " Type END to finish.\n> ");
++			students.add(new Student(input));
++			input = prompt.nextLine();
++		}
++		
++		System.out.println("Enrolled " + students.size() + " students. Now for scores!");
++		
++		for(Student s : students) {
++			System.out.print("Please enter the scores, separated by spaces, for "
++					+ s.getName() + "\n> ");
++			input = prompt.nextLine();
++			while(!input.matches("[\\d+.*\\d* ]+")) {
++				System.out.print("That's not valid input. Try again.\n> ");
++				input = prompt.nextLine();
++			}
++			String[] values = input.split(" ");
++			double[] scores = new double[values.length];
++			for(int i = 0; i < values.length; i++) {
++				scores[i] = Double.valueOf(values[i]);
++			}
++			s.setScores(scores);
++		}
++	
++		System.out.print("Inputs finished. Here are the results!"
++				+ "\n*****GRADEBOOK GENERATED ON " + today +  "*****"
++				+ "\nStudents enrolled: " + students.size() + "\n");
++		
++		for(Student s : students) {
++			System.out.println(s.getName() + ": " + s.getAverage());
++		}
++	}
+ }
+diff --git a/src/Chapter 8 - Designing Classes/Student.java b/src/Chapter 8 - Designing Classes/Student.java
+index 958d181..cc9623e 100644
+--- a/src/Chapter 8 - Designing Classes/Student.java	
++++ b/src/Chapter 8 - Designing Classes/Student.java	
+@@ -1,4 +1,50 @@
+-
++/**
++ * Student.java
++ * @author ethan.lee
++ *
++ */
+ public class Student {
+-
++	
++	private String name = "";
++	private double[] scores;
++	
++	public Student() {
++		this.name = null;
++		scores = null;
++	}
++	
++	public Student(String name) {
++		this.name = name;
++		scores = null;
++	}
++	
++	public Student(String name, double[] quizScores) {
++		this.name = name;
++		scores = quizScores;
++	}
++	
++	public String getName() {
++		return this.name;
++	}
++	
++	public void setName(String name) {
++		this.name = name;
++	}
++	
++	public void setScores(double[] quizScores) {
++		scores = quizScores;
++	}
++	
++	public double getAverage() {
++		double sum = 0;
++		int count = 0;
++		
++		for(double score : scores) {
++			sum += score;
++			count++;
++		}
++		
++		return sum / count;
++	}
++	
+ }
+diff --git a/src/Miscellaneous/StudentOld.java b/src/Miscellaneous/StudentOld.java
+new file mode 100644
+index 0000000..5faf4dc
+--- /dev/null
++++ b/src/Miscellaneous/StudentOld.java
+@@ -0,0 +1,34 @@
++
++public class StudentOld {
++	
++	private String name;
++	private int quizCount;
++	private int scoreSum;
++	
++	public StudentOld(String name) {
++		this.name = name;
++		quizCount = 0;
++	}
++	
++	public String getName() {
++		return name;
++	}
++	
++	public int getScoreSum() {
++		return scoreSum;
++	}
++	
++	public double averageScore() {
++		return (scoreSum + 1.0) / quizCount;
++	}
++	
++	public void addScore(int score) {
++		scoreSum += score;
++		quizCount++;
++	}
++	
++	public String toString() {
++		return name + "\nNumber of quizzes taken: " + quizCount + "\nTotal sum of quiz scores: " + scoreSum;
++	}
++}
++
+diff --git a/src/Miscellaneous/TestObject.java b/src/Miscellaneous/TestObject.java
+index d4463a6..21280af 100644
+--- a/src/Miscellaneous/TestObject.java
++++ b/src/Miscellaneous/TestObject.java
+@@ -1,29 +1,3 @@
+ public class TestObject {
+ 	
+-public static void main (String[] args) {
+-	
+-	/*final Scanner scan = new Scanner(System.in);*/
+-	
+-/*	Scanner scan = new Scanner (System.in);
+-    int number1 = 0;
+-    int number2 = 0;
+-    System.out.println("Please enter an integer: ");
+-    number1 = scan.nextInt();
+-    
+-    System.out.println("The number you entered was " + number1);
+-    
+-    System.out.print("Please enter an integer: ");
+-    number2 = scan.nextInt();
+-    
+-    System.out.println("The sum of the numbers you entered was " + (number1 + number2)); 
+-    int i = '-';
+-    System.out.println(i); 
+-	String s = "hello";
+-	double d = 80.0;
+-	s = s.concat(String.valueOf(d));
+-	System.out.println(s);
+-	*/
+-	
+-
+-}
+ }
