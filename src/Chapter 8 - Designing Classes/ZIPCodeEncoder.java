@@ -31,7 +31,6 @@ public class ZIPCodeEncoder extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		char[] zip = input.toCharArray();
-		
 		for(char c : zip) {
 			char[] digit = encodeNumber(Character.getNumericValue(c)).toCharArray();
 			for (char d : digit) {
